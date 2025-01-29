@@ -40,9 +40,9 @@ class ZATCA::UBL::CommonAggregateComponents::TaxCategory < ZATCA::UBL::BaseCompo
   def elements
     [
       ZATCA::UBL::BaseComponent.new(name: "cbc:ID", value: @id, attributes: {"schemeAgencyID" => @scheme_agency_id, "schemeID" => @scheme_id}.compact),
+      ZATCA::UBL::BaseComponent.new(name: "cbc:Percent", value: @tax_percent),
       tax_exemption_reason_code_element,
       tax_exemption_reason_element,
-      ZATCA::UBL::BaseComponent.new(name: "cbc:Percent", value: @tax_percent),
       ZATCA::UBL::BaseComponent.new(name: "cac:TaxScheme", elements: [
         ZATCA::UBL::BaseComponent.new(name: "cbc:ID", value: @tax_scheme_id, attributes: {"schemeAgencyID" => @scheme_agency_id, "schemeID" => @tax_scheme_scheme_id}.compact)
       ])
