@@ -15,31 +15,21 @@ class ZATCA::UBL::CommonAggregateComponents::TaxTotal < ZATCA::UBL::BaseComponen
   # </cac:TaxTotal>
 
   def initialize(
-    tax_amount:, tax_subtotal_amount: nil, taxable_amount: nil,
-    rounding_amount: nil, tax_category: nil, currency_id: "SAR"
+    tax_amount:,
+    rounding_amount: nil,
+    currency_id: "SAR",
+    tax_subtotal: []
   )
     super()
 
     @tax_amount = tax_amount
-    @tax_subtotal_amount = tax_subtotal_amount
-    @taxable_amount = taxable_amount
     @rounding_amount = rounding_amount
-    @tax_category = tax_category || ZATCA::UBL::CommonAggregateComponents::TaxCategory.new
     @currency_id = currency_id
+    @tax_subtotal = tax_subtotal
   end
 
   def name
     "cac:TaxTotal"
-  end
-
-  def tax_subtotal_element
-    if @taxable_amount.present? && @tax_subtotal_amount.present? && @tax_category.present?
-      ZATCA::UBL::BaseComponent.new(name: "cac:TaxSubtotal", elements: [
-        ZATCA::UBL::BaseComponent.new(name: "cbc:TaxableAmount", value: @taxable_amount, attributes: {"currencyID" => @currency_id}),
-        ZATCA::UBL::BaseComponent.new(name: "cbc:TaxAmount", value: @tax_subtotal_amount, attributes: {"currencyID" => @currency_id}),
-        @tax_category
-      ])
-    end
   end
 
   def rounding_amount_element
@@ -49,10 +39,12 @@ class ZATCA::UBL::CommonAggregateComponents::TaxTotal < ZATCA::UBL::BaseComponen
   end
 
   def elements
-    [
+    elems = [
       ZATCA::UBL::BaseComponent.new(name: "cbc:TaxAmount", value: @tax_amount, attributes: {"currencyID" => @currency_id}),
-      rounding_amount_element,
-      tax_subtotal_element
+      rounding_amount_element
     ]
+
+    elems << @tax_subtotal if @tax_subtotal.present?
+    elems
   end
 end
