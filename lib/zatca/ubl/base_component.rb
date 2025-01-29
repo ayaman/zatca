@@ -119,7 +119,13 @@ class ZATCA::UBL::BaseComponent
   def build_xml(xml)
     xml.send(name, attributes) do
       if elements.length > 0
-        elements.compact.each { |element| element.build_xml(xml) }
+        elements.compact.each do |element|
+          if element.is_a?(Array)
+            element.each { |arr_e| arr_e.build_xml(xml) }
+          else
+            element.build_xml(xml)
+          end
+        end
       elsif value.present?
         xml.text(value)
       end
