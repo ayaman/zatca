@@ -1,4 +1,3 @@
-INVOICE_LINES = [].freeze
 INVOICE_ID = "SME00010".freeze
 INVOICE_UUID = "8e6000cf-1a98-4174-b3e7-b5d5954bc10d".freeze
 NOTE = "ABC".freeze
