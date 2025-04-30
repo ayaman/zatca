@@ -209,12 +209,7 @@ class ZATCA::UBL::Invoice < ZATCA::UBL::BaseComponent
       cert_serial_number: @signature&.cert_serial_number
     )
 
-    super(
-      canonicalized: canonicalized,
-      spaces: spaces,
-      apply_invoice_hacks: apply_invoice_hacks,
-      remove_root_xml_tag: remove_root_xml_tag
-    )
+    super
   end
 
   def generate_unsigned_xml(
