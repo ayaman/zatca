@@ -42,7 +42,7 @@ Gem::Specification.new do |spec|
 
   # Development Dependencies
   spec.add_development_dependency "standard", "~> 1.3"
-  spec.add_development_dependency "byebug", "~> 9.0"
+  spec.add_development_dependency "byebug"
   spec.add_development_dependency "rspec", "~> 3.10"
   spec.add_development_dependency "vcr", "~> 6.0.0"
   spec.add_development_dependency "webmock", "~> 3.18.1"
