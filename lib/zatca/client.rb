@@ -181,7 +181,7 @@ class ZATCA::Client
   end
 
   def authenticated_request_cilent
-    HTTPX.plugin(:basic_authentication).basic_auth(@username, @password)
+    HTTPX.plugin(:basic_auth).basic_auth(@username, @password)
   end
 
   def unauthenticated_request_client

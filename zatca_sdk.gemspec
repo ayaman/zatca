@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "zeitwerk", "~> 2.4"
   spec.add_dependency "dry-schema", ">= 1.5"
   spec.add_dependency "rqrcode", "~> 2.1.0"
-  spec.add_dependency "httpx", "~> 0.21.0"
+  spec.add_dependency "httpx", "~> 1.5"
   spec.add_dependency "nokogiri", ">= 1.12"
   spec.add_dependency "activesupport", ">= 5.2"
   spec.add_dependency "dry-initializer", ">= 3.0"
